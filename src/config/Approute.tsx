@@ -8,7 +8,7 @@ export default function Approute() {
     return <>
         <BrowserRouter>
             <Routes>
-                <Route path="/*" element={<DAshboard />} />
+                <Route path="/" element={<DAshboard />} />
                 <Route path="DAshboard/*" element={<DAshboard />} />
             </Routes>
         </BrowserRouter>
