@@ -1,5 +1,5 @@
 import { getDatabase, onValue, push, ref, set, remove } from "firebase/database";
-import app from "./firebaseconfig";
+import app from "./firebaseconfig"
 
 
 export const db = getDatabase(app);
@@ -20,11 +20,11 @@ export const sendData = (nodeName:string,data:any) => {
         });       
 };
 
-export const getData = (nodeName:any, id?:any) => {
+export const getData = (nodeName:any, classID?:any) => {
 
     return new Promise((resolve,reject) => {
         
-        const refernce = ref(db, `${nodeName}/${id ? id : "" }`);
+        const refernce = ref(db, `${nodeName}/${classID ? classID : "" }`);
     
         onValue(refernce,(dt) => {
             // console.log(Object.values(dt.val()))

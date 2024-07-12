@@ -24,6 +24,14 @@ import STlist from '../screens/Students/STlist';
 import STtransfer from '../screens/Students/STtransfer';
 import BATreeview from '../components/batreeview';
 import PageNotFound from '../screens/PgeNotFound';
+import TEadd from '../screens/Teachers/TEadd';
+import TEallocation from '../screens/Teachers/TEallocation';
+import TElist from '../screens/Teachers/TElist';
+import SBadd from '../screens/Subjects/SBadd';
+import SBlist from '../screens/Subjects/SBlist';
+import SYform from '../screens/Syllabus/SYform';
+import SYlist from '../screens/Syllabus/SYlist';
+import FEstructure from '../screens/Fees/FEstructure';
 
 const drawerWidth = 240;
 
@@ -88,13 +96,6 @@ export default function DAshboard() {
     setOpen(false);
   };
 
-  const [menu , setMenu] = React.useState([
-    {
-      name : 'STAdd',
-      route : 'STAdd'
-    }
-  ])
-
   const navigate = useNavigate() 
 
   const navigateScreen = (route:string) => {
@@ -106,15 +107,15 @@ export default function DAshboard() {
       moduleName : "STUDENTS",
       child : [
         {
-          name : 'STAdd',
+          name : 'ADD STUDENTS',
           route : 'STAdd'
         },
         {
-          name : "STlist",
+          name : "STUDENTS LIST",
           route : 'STlist'
         },
         {
-          name : 'STtransfer',
+          name : 'EDIT STUDENTS LIST',
           route : 'STtransfer'
         },
       ]
@@ -123,15 +124,15 @@ export default function DAshboard() {
       moduleName : "TEACHERS",
       child : [
         {
-          name : 'TEAdd',
+          name : 'Add TEACHERS',
           route : 'TEAdd'
         },
         {
-          name : "TElist",
+          name : "TEACHER LIST",
           route : 'TElist'
         },
         {
-          name : 'TEallocation',
+          name : 'TEACHER TRANSFER ',
           route : 'TEallocation'
         },
       ]
@@ -140,23 +141,42 @@ export default function DAshboard() {
       moduleName : "SUBJECTS",
       child : [
         {
-          name : 'SBadd',
+          name : 'ADD SUBJECTS',
           route : 'SBadd'
         },
         {
-          name : "SBlist",
+          name : "SUBJECT LIST",
           route : 'SBlist'
         },
+      ]
+    },
+    {
+      moduleName : "SYLLABUS",
+      child : [
         {
-          name : 'TEallocation',
-          route : 'TEallocation'
+          name : 'SYLLABUS FORM',
+          route : 'SYform'
+        },
+        {
+          name : "SYLLABUS LIST",
+          route : 'SYlist'
         },
       ]
-    }
+    },
+    {
+      moduleName : "FEES",
+      child : 
+        {
+          name : 'FEES STRUCTURE',
+          route : 'FEstructure'
+        },
+    },
   ])
+
 
   return (
     <Box sx={{ display: 'flex' }}>
+      <h1 style={{color:'black'}}>Hello</h1>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -169,7 +189,8 @@ export default function DAshboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div"
+          style={{textAlign : "center"}}>
             LEARNING MANAGEMENT SYSTEM 
           </Typography>
         </Toolbar>
@@ -193,20 +214,6 @@ export default function DAshboard() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {menu.map((x, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton onClick={()=>{
-                navigateScreen(x.route)
-              }}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={x.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
         <BATreeview treeStructure={treeStructure}/>
       </Drawer>
       <Main open={open}>
@@ -214,8 +221,17 @@ export default function DAshboard() {
         <Routes>
           <Route path='STAdd' element = {<STAdd/>}/>
           <Route path='STlist' element = {<STlist/>}/>
+          <Route path='DAshboard' element = {<DAshboard/>}/>
           <Route path='*' element = {<PageNotFound/>}/>
           <Route path='STtransfer' element = {<STtransfer/>}/>
+          <Route path='TEadd' element = {<TEadd/>}/>
+          <Route path='TEallocation' element = {<TEallocation/>}/>
+          <Route path='TElist' element = {<TElist/>}/>
+          <Route path='SBadd' element = {<SBadd/>}/>
+          <Route path='SBlist' element = {<SBlist/>}/>
+          <Route path='SYform' element = {<SYform/>}/>
+          <Route path='SYlist' element = {<SYlist/>}/>
+          <Route path='FEstructure' element = {<FEstructure/>}/>
         </Routes>
       </Main>
     </Box>
